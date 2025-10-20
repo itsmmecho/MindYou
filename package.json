@@ -1,0 +1,21 @@
+{
+  "name": "monorepo-next-express",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.0.0",
+    "typescript": "^5.1.6",
+    "eslint": "^8.0.0"
+  },
+  "scripts": {
+    "bootstrap": "npm install",
+    "dev": "concurrently --names frontend,backend \"npm --workspace @app/frontend run dev\" \"npm --workspace @app/backend run dev\" --raw",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "npm --workspace @app/frontend run build",
+    "build:backend": "npm --workspace @app/backend run build",
+    "start:prod": "npm --workspace @app/backend run start"
+  }
+}
